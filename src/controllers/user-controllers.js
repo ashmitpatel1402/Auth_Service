@@ -43,7 +43,30 @@ const signIn=async(req,res)=>{
     }
 }
 
+const isAuthenticated=async(req,res)=>{
+    try{
+         const token=req.headers['x-acess-token'];
+         const response=await userService.isAuthenticated(token);
+         /*WE should not write it here because it is possible the user might no longer exist in our databse
+         ie he deleted and we will still be authenticating him*/
+         return res.status(200).json({
+            data:response,
+            message:"Authentication successfull",
+            error:{},
+            success:true
+         })
+    }catch(error){
+        return res.status(500).json({
+            data:{},
+            success:false,
+            message:"Something wrong during Authentication",
+            err:error
+        })
+    }
+}
+
 module.exports={
     create,
-    signIn
+    signIn,
+    isAuthenticated
 }

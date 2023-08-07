@@ -10,7 +10,7 @@ router.post('/signin',
             AuthRequestValidators.validateUserAuth,
             userController.signIn);
 
-            router.arguments('/isAuthenticated',
+            router.get('/isAuthenticated',
                              userController.isAuthenticated);
 
 

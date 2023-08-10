@@ -83,6 +83,25 @@ class UserService{
             throw{error};
         }
     }
+
+    async isAdmin(userId){
+       try{
+        return this.userRepository.isAdmin(userId);
+       }catch(error){
+        console.log("Something went wrong");
+        throw{error};
+       }
+    }
+
+    async isBusiness_Role(userId){
+        try{
+            const response=await this.userRepository.isAirline_Business(userId);
+            return response;
+        }catch(error){
+            console.log("Something went wrong");
+            throw{error};
+        }
+    }
 }
 
 module.exports=UserService;
